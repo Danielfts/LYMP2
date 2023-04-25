@@ -1,0 +1,52 @@
+using gold.**
+
+procedure main(args:String[]) begin
+	
+	Q := {"a"‥"z"} ∪ {"A" ‥ "Z"} ∪ {"0"‥"9"} ∪ {"("} ∪ {")"} ∪ {","} ∪ {";"} ∪ {":"} 
+			∪ {"="} ∪ {">"} ∪ {"<"} ∪ {"-"} ∪ {"+"} ∪ {"/"} ∪ {"*"} ∪ {" "}         
+	Σ := Q ∪ {"init"}
+	q := {"init"}
+	F := Q
+	
+ 	GDeterministicTransducer(Q,Σ,Σ,q,F,δ,g,h)
+end
+
+function δ(q,s) begin
+  return s
+end
+
+function h(⟨x,y⟩,a) begin
+	if a=" " and y= " "then return λ
+	elseif a=" " and y="begin" then return "b"
+	elseif a=" " and y="function" then return "f"
+	elseif a=" " and y="if" then return "i"
+	elseif a=" " and y="then" then return "t"
+	elseif a=" " and y="else" then return "e"
+	elseif a=" " and y="end" then return "n"
+	elseif a=" " and y="while" then return "w"
+	elseif a=" " and y="do" then return "d"
+	elseif a=" " and y="mod" then return "m"
+	elseif a=" " and y="(" then return "("
+	elseif a=" " and y=")" then return ")"
+	elseif a=" " and y="," then return ","
+	elseif a=" " and y=":" then return ":"
+	elseif a=" " and y=";" then return ";"
+	elseif a=" " and y="=" then return "="
+	elseif a=" " and y="<" then return "<"
+	elseif a=" " and y=">" then return ">"
+	elseif a=" " and y="+" then return "+"
+	elseif a=" " and y="-" then return "-"
+	elseif a=" " and y="*" then return "*"
+	elseif a=" " and y="/" then return "/"
+	elseif a=" " then return "v"
+	else return λ
+	end
+end 
+
+function g(⟨x,y⟩,a) begin
+	if a=" " then return λ
+
+	else return String.valueOf(y)+ String.valueOf(a)
+		
+	end
+end 

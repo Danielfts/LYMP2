@@ -1,0 +1,85 @@
+using gold.structures.automaton.*
+using gold.visualization.automaton.*
+
+procedure main(args:String[]) begin
+	Q := (0‥23)∪{"err"}
+	Σ := ('a'‥'z')∪{' '}∪{'=','>','<'}∪{'0','1','2','3','4','5','6','7','8','9'}//{'b','e','g','i','n'}
+	q := 0
+	F := {9}
+
+	
+	
+	A : GDeterministicAutomaton := GDeterministicAutomaton(Q, Σ, q, F, δ)
+	GAutomataFrame.show(A)
+end
+
+function δ(q, σ) begin
+//begin
+	if q ="err" then
+		return "err"
+	end
+	if q = 0 && σ = 'b' then
+		return 1
+	elseif q = 1 && σ ='e' then
+		return 2
+	elseif q = 2 && σ ='g' then
+		return 3
+	elseif q = 3 && σ ='i' then
+		return 4
+	elseif q = 4 && σ ='n' then
+		return 5
+	elseif q = 5 && σ =' ' then
+		return 6
+
+//if  
+	elseif  q = 6 && σ ='i' then
+		return 10
+	elseif q = 10 && σ ='f' then
+		return 11
+	elseif q = 11 && σ =' ' then
+		return 12
+	elseif q = 12 && σ ∈ ('a'‥'z') then
+		return 13
+		
+	elseif q = 13 && σ ∈ ('a'‥'z') then
+		return 13
+		
+	elseif q = 13 && σ =' ' then
+		return 14
+	elseif q = 14 && σ ∈ {'=','>','<'} then
+		return 15
+	elseif q = 15 && σ =' ' then
+		return 16
+		
+	elseif q = 16 && σ ∈ {'0','1','2','3','4','5','6','7','8','9'} then
+		return 17
+	elseif q = 17 && σ ∈ {'0','1','2','3','4','5','6','7','8','9'} then
+		return 17
+	elseif q = 17 && σ =' ' then
+		return 18
+	elseif q = 18 && σ ='t' then
+		return 19
+	elseif q = 19 && σ ='h' then
+		return 20
+	elseif q = 20 && σ ='e' then
+		return 21
+	elseif q = 21 && σ ='n' then
+		return 22
+	elseif q = 22 && σ =' ' then
+		return 23
+	
+	//end
+	elseif σ ='e' then
+		return 7
+	elseif q = 7 && σ ='n' then
+		return 8
+	elseif q = 8 && σ ='d' then
+		return 9
+		
+	else
+		return "err"	
+	end
+	
+	
+	
+end
