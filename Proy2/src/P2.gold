@@ -1,0 +1,149 @@
+// -----------------------
+// Daniela Camacho
+// Daniel Triviño
+
+
+using gold.**
+  
+procedure main(args:String[]) begin
+	var sc:java.util.Scanner(System.$in)
+    
+	coder:=createCoder()
+   	deCoder:=createDecoder()
+   	
+    
+    //GAutomataFrame.show(coder)
+   //GAutomataFrame.show(deCoder)
+   
+  	
+	
+  	Utilities.testCodeDecode(coder,deCoder)
+		
+end
+
+function createCoder():ITransducer begin
+	//Q := {('a'‥'c')} ∪ {('a'‥'c')×('a'‥'c')} ∪ {('a'‥'c')×('a'‥'c')×('a'‥'c')}∪{'&'}∪{'S'}
+	x := String.valueOf(('a'‥'c')×('a'‥'c'))
+	y := {⟨c,d,e,f⟩ | c in ('a'‥'c'), d in ('a'‥'c'), e in ('a'‥'c'), f in ('&')}
+	Q := ('a'‥'c') ∪{⟨a,b⟩ | a in ('a'‥'c'), b in ('a'‥'c')}∪ {⟨c,d,e⟩ | c in ('a'‥'c'), d in ('a'‥'c'), e in ('a'‥'c')}∪{'&','s'} ∪ y
+	Σ := ('a'‥'c') ∪ {'&'}
+	Σ´:= ('a'‥'c')∪ {'&'} ∪ {'*'}
+	
+	q₀:=  's'
+	F :=  {'&'}
+	print Q
+	
+	return 	GDeterministicTransducer(Q,Σ,Σ´,q₀,F,δ,g,h)
+end
+
+function δ(state,input) begin
+  if (state in ('a'‥'c') ) and input != '&' then
+  	//System.out.println(String.valueOf(state)+String.valueOf(input))
+  	print ⟨state,input⟩
+  	return ⟨state,input⟩
+  elseif state in ('a'‥'c')×('a'‥'c') and input != '&' then
+  	print ⟨state[0],state[1],input⟩
+  	return ⟨state[0],state[1],input⟩
+  elseif input='&' and state in ('a'‥'c')×('a'‥'c')×('a'‥'c') then
+  	print ⟨state[0], state[1], state[2],input⟩
+  	return ⟨state[0], state[1], state[2],input⟩
+  elseif |state|=3 then return input
+  else return input
+  	end
+end
+
+	
+function h(state,input) begin
+   if |state|=3 then return String.valueOf(state[2]) +String.valueOf(state[1])+String.valueOf(state[0])
+   elseif |state|=4  then
+   	return '&'
+   else return ""
+   end
+end
+
+function g(s) begin
+	return ""
+end
+
+
+
+function createDecoder():ITransducer begin
+	Q := {⟨size,almd,num,fin,hay,ar⟩|ar in {'1','0'},hay in {'1','0'}, fin in {'1','0'},size in (0‥4),almd in (0‥3),num in (0‥2)}∪{"err"}	
+	Σ := ('a'‥'z') ∪('0'‥'2')∪ {'#'}∪{'*'}∪{'@'}∪{'$'}
+	Σ´:= ('a'‥'z') ∪ {' '}∪{'$'}
+	q₀:= ⟨0,0,1,'0','0','0'⟩
+	F :={⟨4,almd,1,'1',hay,'1'⟩|hay in {'1','0'},almd in (0‥3)}
+	return 	GDeterministicTransducer(Q,Σ,Σ´,q₀,F,δ1,g,h1)
+end
+	
+	
+function δ1(state,input) begin
+ return state 
+ end
+
+
+function δ1(⟨size,almd,num,fin,hay,nu⟩,input) begin
+ 
+ if input = '$' then return ⟨size,almd,num,'1',hay,nu⟩
+ elseif size < 4 then
+  	
+  	if input in ('a'‥'z') then return ⟨size+1,almd,num,'0',hay,'0'⟩
+  	elseif input='#' then
+  		
+  		if almd+1 >3 then return "err"
+  		else return ⟨size+1,almd+1,num,'0','1','0'⟩
+  		end
+  	
+  	else return "err"	
+  	end
+  
+  elseif size = 4 then
+  	
+  	if input ='*' then return ⟨0,0,1,'0','0','0'⟩
+    elseif input = '@' then 
+  	   if hay = '1' then return "err"
+  	   else
+  	    	if num+1 >=3  then return ⟨0,almd,0,'0',hay,'0'⟩
+  			else return ⟨0,almd,num+1,'0',hay,nu⟩
+  			end	
+	
+  	   end
+  		
+	elseif input in ('0'‥'3') then
+	
+		if Integer.parseInt(input) = num then return ⟨size,almd,1,fin,hay,'1'⟩
+		else return "err"
+		end
+	
+	else return "err"	
+    end
+  
+  else return "err"
+  end
+ 
+end
+
+
+
+
+function h1(state,input) begin 
+  return ""
+  end
+  
+function h1(⟨size,almd,num,fin,hay,nu⟩,input) begin
+
+  if input == '$' then return '$'
+  elseif input in ('a'‥'z') then return input
+  elseif input = '*' then return ' '	
+  else return ""	
+  end
+
+end
+  
+  
+function number(c,n) begin 
+	n:= Integer.parseInt(n)
+	if n=0  then return λ
+	else return String.valueOf(c)+number(c,n-1)
+	end
+end

@@ -63,9 +63,9 @@ public final class CD3_2 {
       $line=31;
       B=$fix($opIntvlY('0','9'));
       $line=32;
-      Object coder=$fix($invokeMethod(CD3_2.class,"createCoder",true,null,new Object[]{}));
+      Object coder=$fix(CD3_2.createCoder());
       $line=33;
-      Object deCoder=$fix($invokeMethod(CD3_2.class,"createDecoder",true,null,new Object[]{}));
+      Object deCoder=$fix(CD3_2.createDecoder());
       $line=40;
       Utilities.testCodeDecode($cast(gold.structures.automaton.ITransducer.class,coder),$cast(gold.structures.automaton.ITransducer.class,deCoder));
     }
@@ -231,7 +231,7 @@ public final class CD3_2 {
                   $line=91;
                   if ($opEqualY(pos,1)) {
                     $line=91;
-                    $result=$invokeMethod(CD3_2.class,"shiftSymbol",true,null,new Object[]{input,d});
+                    $result=CD3_2.shiftSymbol(input,d);
                     if (true) break $try;
                   }
                   else {
@@ -462,7 +462,7 @@ public final class CD3_2 {
           $line=150;
           if (($opMembrY(input,$opIntvlY('a','z'))&&$opEqualY(pos,1))) {
             $line=150;
-            $result=$invokeMethod(CD3_2.class,"shiftSymbol",true,null,new Object[]{input,$opMinusY(d)});
+            $result=CD3_2.shiftSymbol(input,$opMinusY(d));
             if (true) break $try;
           }
           else {
