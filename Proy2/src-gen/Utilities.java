@@ -150,11 +150,11 @@ public final class Utilities {
           break;
         }
         $line=50;
-        Object inputM=$fix($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{((gold.structures.automaton.IAutomaton)M).getAlphabet()}));
+        Object inputM=$fix(Utilities.toSet(((gold.structures.automaton.IAutomaton)M).getAlphabet()));
         $line=52;
         if ($bool(rev)) {
           $line=53;
-          string=$fix($invokeMethod(Utilities.class,"reverse",true,null,new Object[]{string}));
+          string=$fix(Utilities.reverse($cast(java.lang.String.class,string)));
           $line=54;
           System.out.println($message(new Object[]{$opAdditY("reverse: ",string)}));
         }
@@ -173,13 +173,13 @@ public final class Utilities {
             $line=64;
             if ($bool(rev)) {
               $line=64;
-              System.out.println($message(new Object[]{$opAdditY("reverse: ",$invokeMethod(Utilities.class,"reverse",true,null,new Object[]{$invokeMethod("getOutputString",$cast(ITransducer.class,M),new Object[]{})}))}));
+              System.out.println($message(new Object[]{$opAdditY("reverse: ",Utilities.reverse($cast(java.lang.String.class,$invokeMethod("getOutputString",$cast(ITransducer.class,M),new Object[]{}))))}));
             }
           }
         }
         else {
           $line=67;
-          System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputM))}));
+          System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY(Utilities.toSet(string),inputM))}));
         }
       }
       $line=70;
@@ -214,7 +214,7 @@ public final class Utilities {
           break;
         }
         $line=88;
-        Object inputM=$fix($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{((gold.structures.automaton.IAutomaton)M).getAlphabet()}));
+        Object inputM=$fix(Utilities.toSet(((gold.structures.automaton.IAutomaton)M).getAlphabet()));
         $line=90;
         if ($bool($invokeMethod("containsAll",((gold.structures.automaton.IAutomaton)M).getAlphabet(),new Object[]{string}))) {
           $line=91;
@@ -229,7 +229,7 @@ public final class Utilities {
         }
         else {
           $line=97;
-          System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputM))}));
+          System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY(Utilities.toSet(string),inputM))}));
         }
       }
       $line=100;
@@ -264,22 +264,22 @@ public final class Utilities {
           break;
         }
         $line=115;
-        Object inputM=$fix($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{((gold.structures.automaton.IAutomaton)M).getAlphabet()}));
+        Object inputM=$fix(Utilities.toSet(((gold.structures.automaton.IAutomaton)M).getAlphabet()));
         $line=117;
         if ($bool($invokeMethod("containsAll",((gold.structures.automaton.IAutomaton)M).getAlphabet(),new Object[]{string}))) {
           $line=118;
-          Object result=$fix(((gold.structures.automaton.IAutomaton)M).acceptsString($cast(java.lang.String.class,$opAdditY($invokeMethod(Utilities.class,"reverse",true,null,new Object[]{string}),"$"))));
+          Object result=$fix(((gold.structures.automaton.IAutomaton)M).acceptsString($cast(java.lang.String.class,$opAdditY(Utilities.reverse($cast(java.lang.String.class,string)),"$"))));
           $line=119;
           System.out.println($message(new Object[]{$opAdditY($opAdditY("The string was ",(($bool(result))?("accepted!"):("rejected."))),(($bool(isTransducer))?(". Output:"):("")))}));
           $line=120;
           if ($bool(isTransducer)) {
             $line=121;
-            System.out.println($message(new Object[]{$invokeMethod(Utilities.class,"reverse",true,null,new Object[]{$invokeMethod("getOutputString",$cast(ITransducer.class,M),new Object[]{})})}));
+            System.out.println($message(new Object[]{Utilities.reverse($cast(java.lang.String.class,$invokeMethod("getOutputString",$cast(ITransducer.class,M),new Object[]{})))}));
           }
         }
         else {
           $line=124;
-          System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputM))}));
+          System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY(Utilities.toSet(string),inputM))}));
         }
       }
       $line=127;
@@ -298,9 +298,9 @@ public final class Utilities {
       java.util.Scanner sc=null;
       sc=$invokeConstructor(java.util.Scanner.class,new Object[]{$invokeField(System.class,"in",true,null)});
       $line=136;
-      Object inputC=$fix($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{((gold.structures.automaton.ITransducer)C).getInputAlphabet()}));
+      Object inputC=$fix(Utilities.toSet(((gold.structures.automaton.ITransducer)C).getInputAlphabet()));
       $line=137;
-      Object inputD=$fix($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{((gold.structures.automaton.ITransducer)D).getInputAlphabet()}));
+      Object inputD=$fix(Utilities.toSet(((gold.structures.automaton.ITransducer)D).getInputAlphabet()));
       $line=139;
       System.out.println($message(new Object[]{"Testing Coder- Reverse Decoder"}));
       $line=140;
@@ -345,7 +345,7 @@ public final class Utilities {
           $line=159;
           if (($opEqualY(option,"1")||$opEqualY(option,"2"))) {
             $line=161;
-            if ($opSbsetY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputC)) {
+            if ($opSbsetY(Utilities.toSet(string),inputC)) {
               $line=162;
               Object result=$fix(((gold.structures.automaton.ITransducer)C).acceptsString($cast(java.lang.String.class,$opAdditY(string,"$"))));
               $line=163;
@@ -355,38 +355,38 @@ public final class Utilities {
               $line=165;
               if ($opEqualY(option,"2")) {
                 $line=166;
-                if ($opSbsetY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{stringOut}),inputD)) {
+                if ($opSbsetY(Utilities.toSet(stringOut),inputD)) {
                   $line=168;
-                  result=$fix(((gold.structures.automaton.ITransducer)D).acceptsString($cast(java.lang.String.class,$opAdditY($invokeMethod(Utilities.class,"reverse",true,null,new Object[]{stringOut}),"$"))));
+                  result=$fix(((gold.structures.automaton.ITransducer)D).acceptsString($cast(java.lang.String.class,$opAdditY(Utilities.reverse($cast(java.lang.String.class,stringOut)),"$"))));
                   $line=169;
-                  Object stringOut1R=$fix($invokeMethod(Utilities.class,"reverse",true,null,new Object[]{((gold.structures.automaton.ITransducer)D).getOutputString()}));
+                  Object stringOut1R=$fix(Utilities.reverse($cast(java.lang.String.class,((gold.structures.automaton.ITransducer)D).getOutputString())));
                   $line=171;
-                  System.out.println($message(new Object[]{$opAdditY($opAdditY($opAdditY("The Reverse of the coded string was ",(($bool(result))?("accepted"):("not accepted"))),". Output: "),$invokeMethod(Utilities.class,"reverse",true,null,new Object[]{((gold.structures.automaton.ITransducer)D).getOutputString()}))}));
+                  System.out.println($message(new Object[]{$opAdditY($opAdditY($opAdditY("The Reverse of the coded string was ",(($bool(result))?("accepted"):("not accepted"))),". Output: "),Utilities.reverse($cast(java.lang.String.class,((gold.structures.automaton.ITransducer)D).getOutputString())))}));
                   $line=172;
                   System.out.println($message(new Object[]{$opAdditY($opAdditY("The Reverse of the decoded string is ",((!$opEqualY(stringOut1R,string))?("not "):(""))),"equal to the original string.")}));
                 }
                 else {
                   $line=174;
-                  System.out.println($message(new Object[]{$opAdditY("Output contains invalid symbols for the decoder: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{stringOut}),inputD))}));
+                  System.out.println($message(new Object[]{$opAdditY("Output contains invalid symbols for the decoder: ",$opDiffeY(Utilities.toSet(stringOut),inputD))}));
                 }
               }
             }
             else {
               $line=179;
-              System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputC))}));
+              System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY(Utilities.toSet(string),inputC))}));
             }
           }
           else {
             $line=182;
-            if ($opSbsetY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputD)) {
+            if ($opSbsetY(Utilities.toSet(string),inputD)) {
               $line=183;
-              Object result=$fix(((gold.structures.automaton.ITransducer)D).acceptsString($cast(java.lang.String.class,$opAdditY($invokeMethod(Utilities.class,"reverse",true,null,new Object[]{string}),"$"))));
+              Object result=$fix(((gold.structures.automaton.ITransducer)D).acceptsString($cast(java.lang.String.class,$opAdditY(Utilities.reverse($cast(java.lang.String.class,string)),"$"))));
               $line=184;
-              System.out.println($message(new Object[]{$opAdditY($opAdditY($opAdditY("The string was ",(($bool(result))?("accepted"):("not accepted")))," by the decoder. Output: "),$invokeMethod(Utilities.class,"reverse",true,null,new Object[]{((gold.structures.automaton.ITransducer)D).getOutputString()}))}));
+              System.out.println($message(new Object[]{$opAdditY($opAdditY($opAdditY("The string was ",(($bool(result))?("accepted"):("not accepted")))," by the decoder. Output: "),Utilities.reverse($cast(java.lang.String.class,((gold.structures.automaton.ITransducer)D).getOutputString())))}));
             }
             else {
               $line=186;
-              System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputD))}));
+              System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY(Utilities.toSet(string),inputD))}));
             }
           }
         }
@@ -407,9 +407,9 @@ public final class Utilities {
       java.util.Scanner sc=null;
       sc=$invokeConstructor(java.util.Scanner.class,new Object[]{$invokeField(System.class,"in",true,null)});
       $line=201;
-      Object inputC=$fix($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{((gold.structures.automaton.ITransducer)C).getInputAlphabet()}));
+      Object inputC=$fix(Utilities.toSet(((gold.structures.automaton.ITransducer)C).getInputAlphabet()));
       $line=202;
-      Object inputD=$fix($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{((gold.structures.automaton.ITransducer)D).getInputAlphabet()}));
+      Object inputD=$fix(Utilities.toSet(((gold.structures.automaton.ITransducer)D).getInputAlphabet()));
       $line=204;
       System.out.println($message(new Object[]{"Testing Coder-Decoder"}));
       $line=205;
@@ -454,7 +454,7 @@ public final class Utilities {
           $line=223;
           if (($opEqualY(option,"1")||$opEqualY(option,"2"))) {
             $line=225;
-            if ($opSbsetY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputC)) {
+            if ($opSbsetY(Utilities.toSet(string),inputC)) {
               $line=226;
               Object result=$fix(((gold.structures.automaton.ITransducer)C).acceptsString($cast(java.lang.String.class,string)));
               $line=227;
@@ -464,7 +464,7 @@ public final class Utilities {
               $line=229;
               if ($opEqualY(option,"2")) {
                 $line=230;
-                if ($opSbsetY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{stringOut}),inputD)) {
+                if ($opSbsetY(Utilities.toSet(stringOut),inputD)) {
                   $line=231;
                   result=$fix(((gold.structures.automaton.ITransducer)D).acceptsString($cast(java.lang.String.class,stringOut)));
                   $line=232;
@@ -476,18 +476,18 @@ public final class Utilities {
                 }
                 else {
                   $line=236;
-                  System.out.println($message(new Object[]{$opAdditY("Output contains invalid symbols for the decoder: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{stringOut}),inputD))}));
+                  System.out.println($message(new Object[]{$opAdditY("Output contains invalid symbols for the decoder: ",$opDiffeY(Utilities.toSet(stringOut),inputD))}));
                 }
               }
             }
             else {
               $line=241;
-              System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputC))}));
+              System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY(Utilities.toSet(string),inputC))}));
             }
           }
           else {
             $line=244;
-            if ($opSbsetY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputD)) {
+            if ($opSbsetY(Utilities.toSet(string),inputD)) {
               $line=245;
               Object result=$fix(((gold.structures.automaton.ITransducer)D).acceptsString($cast(java.lang.String.class,string)));
               $line=246;
@@ -495,7 +495,7 @@ public final class Utilities {
             }
             else {
               $line=248;
-              System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY($invokeMethod(Utilities.class,"toSet",true,null,new Object[]{string}),inputD))}));
+              System.out.println($message(new Object[]{$opAdditY("Input contains invalid symbols: ",$opDiffeY(Utilities.toSet(string),inputD))}));
             }
           }
         }
